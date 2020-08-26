@@ -5,7 +5,7 @@ from django.utils import timezone
 
 class CustomUser(AbstractUser):
 	created_at = models.DateTimeField(auto_now_add=True)
-	is_active = models.BooleanField(('is_active'), default=False)
+	is_active = models.BooleanField(('is_active'), default=True)
 
 	def __str__(self):
 		return self.username
