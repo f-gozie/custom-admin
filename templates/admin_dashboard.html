@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+	Fine Admin Dashboard
+{% endblock %}
+
+{% block content %}
+	<h2>View User Metrics</h2><hr>
+
+	<h5>Users in the last 24 hours</h5>
+		<table class="table table-hover table-bordered">
+			<caption>User Information</caption>
+			<thead class="thead-dark">
+				<th>User ID</th>
+				<th>Username</th>
+				<th>Email Address</th>
+				<th>Active Status</th>
+				<th>Staff Status</th>
+			</thead>
+			{% for a in users_in_past_24_hours %}
+				<tr>
+					<td>{{ a.id }}</td>
+					<td>{{ a.username }}</td>
+					<td>{{ a.email }}</td>
+					<td>
+						{% if a.is_active %}
+							<form action="{% url 'toggle_user_status_false' user_id=a.id %}" method="post">
+								{% csrf_token %}
+									<button class="btn btn-danger" type="submit">
+										Deactivate
+									</button>
+							</form>
+						{% else %}
+							<form action="{% url 'toggle_user_status_true' user_id=a.id %}" method="post">
+								{% csrf_token %}
+									<button class="btn btn-primary" type="submit">
+										Activate
+									</button>
+							</form>
+						{% endif %}
+					</td>
+					<td>
+						{% if a.is_staff %}
+							Staff
+						{% else %}
+							Not Staff
+						{% endif %}
+					</td>
+				</tr>
+			{% endfor %}
+		</table>
+		<hr>
+
+		<h5>Users in the past week</h5>
+		<table class="table table-hover table-bordered">
+			<caption>User Information</caption>
+			<thead class="thead-dark">
+				<th>User ID</th>
+				<th>Username</th>
+				<th>Email Address</th>
+				<th>Active Status</th>
+				<th>Staff Status</th>
+			</thead>
+			{% for a in users_in_past_week %}
+				<tr>
+					<td>{{ a.id }}</td>
+					<td>{{ a.username }}</td>
+					<td>{{ a.email }}</td>
+					<td>
+						{% if a.is_active %}
+							<form action="{% url 'toggle_user_status_false' user_id=a.id %}" method="post">
+								{% csrf_token %}
+									<button class="btn btn-danger" type="submit">
+										Deactivate
+									</button>
+							</form>
+						{% else %}
+							<form action="{% url 'toggle_user_status_true' user_id=a.id %}" method="post">
+								{% csrf_token %}
+									<button class="btn btn-primary" type="submit">
+										Activate
+									</button>
+							</form>
+						{% endif %}
+					</td>
+					<td>
+						{% if a.is_staff %}
+							Staff
+						{% else %}
+							Not Staff
+						{% endif %}
+					</td>
+				</tr>
+			{% endfor %}
+		</table>
+		<hr>
+
+		<h5>Users in the past month</h5>
+		<table class="table table-hover table-bordered">
+			<caption>User Information</caption>
+			<thead class="thead-dark">
+				<th>User ID</th>
+				<th>Username</th>
+				<th>Email Address</th>
+				<th>Active Status</th>
+				<th>Staff Status</th>
+			</thead>
+			{% for a in users_in_past_month %}
+				<tr>
+					<td>{{ a.id }}</td>
+					<td>{{ a.username }}</td>
+					<td>{{ a.email }}</td>
+					<td>
+						{% if a.is_active %}
+							<form action="{% url 'toggle_user_status_false' user_id=a.id %}" method="post">
+								{% csrf_token %}
+									<button class="btn btn-danger" type="submit">
+										Deactivate
+									</button>
+							</form>
+						{% else %}
+							<form action="{% url 'toggle_user_status_true' user_id=a.id %}" method="post">
+								{% csrf_token %}
+									<button class="btn btn-primary" type="submit">
+										Activate
+									</button>
+							</form>
+						{% endif %}
+					</td>
+					<td>
+						{% if a.is_staff %}
+							Staff
+						{% else %}
+							Not Staff
+						{% endif %}
+					</td>
+				</tr>
+			{% endfor %}
+		</table>
+		<hr>
+{% endblock %}

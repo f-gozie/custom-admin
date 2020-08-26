@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>User Metrics</title>
+</head>
+<body>
+	<a href="{% url 'index' %}">Home</a><br>
+	<h2>View User Metrics</h2>
+
+	<h3>Users in the last 24 hours</h3>
+	{% for a in users_in_past_24_hours %}
+		<li>
+			{{ a }}
+			{% if a.is_active %}
+				<form action="{% url 'toggle_user_status_false' user_id=a.id %}" method="post">
+					{% csrf_token %}
+						<button type="submit">
+							Deactivate
+						</button>
+				</form>
+			{% else %}
+				<form action="{% url 'toggle_user_status_true' user_id=a.id %}" method="post">
+					{% csrf_token %}
+						<button type="submit">
+							Activate
+						</button>
+				</form>
+			{% endif %}
+
+		</li>
+	{% endfor %}
+
+	<hr>
+
+	<h3>Users in the past week</h3>
+	{% for a in users_in_past_week %}
+		<li>
+			{{ a }}
+			{% if a.is_active %}
+				<form action="{% url 'toggle_user_status_false' user_id=a.id %}" method="post">
+					{% csrf_token %}
+						<button type="submit">
+							Deactivate
+						</button>
+				</form>
+			{% else %}
+				<form action="{% url 'toggle_user_status_true' user_id=a.id %}" method="post">
+					{% csrf_token %}
+						<button type="submit">
+							Activate
+						</button>
+				</form>
+			{% endif %}
+
+		</li>
+	{% endfor %}
+
+	<hr>
+
+	<h3>Users in the past month</h3>
+	{% for a in users_in_past_month %}
+		<li>
+			{{ a }}
+			{% if a.is_active %}
+				<form action="{% url 'toggle_user_status_false' user_id=a.id %}" method="post">
+					{% csrf_token %}
+						<button type="submit">
+							Deactivate
+						</button>
+				</form>
+			{% else %}
+				<form action="{% url 'toggle_user_status_true' user_id=a.id %}" method="post">
+					{% csrf_token %}
+						<button type="submit">
+							Activate
+						</button>
+				</form>
+			{% endif %}
+
+		</li>
+	{% endfor %}
+</body>
+</html>

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+	Home Page
+{% endblock %}
+
+{% block content %}
+
+	{% if user.is_superuser %}
+		<h2>Hello Admin</h2>
+	{% else %}
+		<h2>Hello User</h2>
+	{% endif %}
+{% endblock %}

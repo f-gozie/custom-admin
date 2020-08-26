@@ -1,0 +1,33 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/login.css" %}">
+{{ form.media }}
+{% endblock %}
+
+{% block bodyclass %}{{ block.super }} login{% endblock %}
+
+{% block usertools %}{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block nav-sidebar %}{% endblock %}
+
+{% block content_title %}{% endblock %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block content %}
+	<form method="post">
+		{% csrf_token %}
+		<p>
+			<label for="id_username">Enter username</label>
+			<input type="text" id="id_username" name="username">
+		</p>
+		<p>
+			<label for="id_password">Enter password</label>
+			<input type="password" id="id_password" name="password">
+		</p>
+		<input type="submit" value="Submit">
+	</form>
+{% endblock %}
