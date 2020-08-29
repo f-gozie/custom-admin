@@ -24,6 +24,8 @@ def signup(request):
 		form = SignUpForm(request.POST)
 		if form.is_valid():
 			user = form.save()
+			user.save()
+			user_plan = user.savings_plan
 			login(request, user)
 			return redirect('index')
 	return render(request, 'registration/signup.html', {'form':form})
@@ -132,3 +134,12 @@ class SendUsersEmails(FormView):
 		confirm_message = "{} user(s) mailed successfully!".format(form.cleaned_data['users'].count())
 		messages.success(self.request, confirm_message)
 		return super(SendUsersEmails, self).form_valid(form)
+
+
+# def choose_plan(request, user_id):
+# 	user = get_object_or_404(CustomUser, id=user_id)
+# 	if request.method == "POST":
+# 		plan_form = ChoosePlanForm()
+
+# 		if plan_form.is_valid():
+# 			alert = 1
